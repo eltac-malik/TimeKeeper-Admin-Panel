@@ -2,5 +2,86 @@
 {
     width: 100%;
     height: 100vh;
-    background-color: red
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bg 1s infinite;
+    background: linear-gradient(291deg, #cc3121, #d7648d, #d664d7, #5661b7, #46c556);
+    background-size: 1000% 1000%;
+
+    -webkit-animation: AnimationName 14s ease infinite;
+    -moz-animation: AnimationName 14s ease infinite;
+    animation: AnimationName 14s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 23%}
+    50%{background-position:100% 78%}
+    100%{background-position:0% 23%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 23%}
+    50%{background-position:100% 78%}
+    100%{background-position:0% 23%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 23%}
+    50%{background-position:100% 78%}
+    100%{background-position:0% 23%}
+}
+
+
+.lg-form
+{
+    width: 40%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid silver;
+    background-color: white
+}
+
+.form
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lg-l
+{
+    width: 90%;
+    margin: 25px 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    
+}
+.lg-l input
+{
+    width: 60%;
+    height: 30px;
+    outline: none;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.lg-l label
+{
+    font-size: 20px;
+}
+
+
+
+@media(max-width:900px)
+{
+    .lg-form
+    {
+        width: 90%;
+    }
 }
