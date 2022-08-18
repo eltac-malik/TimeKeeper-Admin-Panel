@@ -2,47 +2,29 @@
 {
     width: 100%;
     height: 100vh;
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: bg 1s infinite;
-    background: linear-gradient(291deg, #cc3121, #d7648d, #d664d7, #5661b7, #46c556);
-    background-size: 1000% 1000%;
-
-    -webkit-animation: AnimationName 14s ease infinite;
-    -moz-animation: AnimationName 14s ease infinite;
-    animation: AnimationName 14s ease infinite;
 }
 
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 23%}
-    50%{background-position:100% 78%}
-    100%{background-position:0% 23%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 23%}
-    50%{background-position:100% 78%}
-    100%{background-position:0% 23%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 23%}
-    50%{background-position:100% 78%}
-    100%{background-position:0% 23%}
-}
-
-
-.lg-form
+.logged
 {
     width: 40%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 80vh;
     border: 1px solid silver;
-    background-color: white
+    border-radius: 3px;
+    position: relative;
+    animation: logged-anime 0.3s;
 }
 
-.form
+@keyframes logged-anime
+{
+    from{margin-top: 800px;}
+    to{margin-top: 0px;}
+}
+
+.form-log
 {
     width: 100%;
     height: 100%;
@@ -52,36 +34,149 @@
     flex-direction: column;
 }
 
-.lg-l
+.form-div
 {
-    width: 90%;
-    margin: 25px 0 ;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+    padding-top: 0px;
+    overflow: hidden;
 }
-.lg-l input
+
+.form-div label
 {
-    width: 60%;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 29px;
+    margin-bottom: 0;
+    color: #000;
+}
+
+.form-input
+{
+    width: 90%;
+    height: 50px;
     outline: none;
+    border: none;
+    font-size: 20px;
+    font-family: sans-serif;
     padding-left: 20px;
-    font-size: 20px;
+    border: 1px solid silver;
+    border-radius: 3px;
+    animation: input-anime 0.9s;
 }
 
-.lg-l label
+@keyframes input-anime
 {
-    font-size: 20px;
+    from{margin-right: -500px;}
+    to{ margin-right: 0px;} 
 }
 
 
+.log-usr
+{
+    font-size: 20px !important;
+    font-family:Verdana, Geneva, Tahoma, sans-serif !important;
+    font-weight: 500 !important;
+    padding-bottom: 10px !important;
+    animation: log-anime 0.9s;
+    cursor: pointer;
+}
+
+.psw-log
+{
+    position: relative;
+}
+.bi-eys
+{
+    position: absolute;
+    font-size: 20px;
+    top: 44%;
+    right: 15%;
+    cursor: pointer;
+    animation: input-anime 0.9s;
+}
+
+@keyframes log-anime
+{
+    from{margin-left: -300px;}
+    to{ margin-left: 0px;} 
+}
+
+
+
+
+.form-sub
+{
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f9706a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.form-sub:hover
+{
+    font-size: 19px;
+    transition: 0.3s;
+    animation: andro 1s infinite;
+}
+
+
+@keyframes andro
+{
+    from{
+        background-color: #d35f59;
+    }
+    to{
+        background-color: #f9706a;
+    }
+}
+
+.ent-img
+{
+    width: 100%;
+    height: 90px;
+    border-bottom: 1px solid silver;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.err-log
+{
+    border: 1px solid red;
+    animation: err-log-anime 0.5s infinite;
+}
+
+@keyframes err-log-anime
+{
+    from{border: 2px solid #f9706a;}
+    to{border: 2px solid #d17671;}
+}
 
 @media(max-width:900px)
 {
-    .lg-form
+    .logged
     {
-        width: 90%;
+        width: 80%;
     }
 }

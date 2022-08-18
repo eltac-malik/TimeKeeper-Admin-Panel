@@ -19,7 +19,7 @@ function Nav() {
                         <i onClick={() => {
                             nav === "nav" ? setNav("rp-nav") : setNav("nav")
                             resp === "" ? setResp("show-nv") : setResp("")
-                        }} class="fa-solid fa-xmark"></i>
+                        }} className="fa-solid fa-xmark"></i>
                     </div>
                     
                 </div>
