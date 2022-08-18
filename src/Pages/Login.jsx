@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "assets/css/Login.css";
 import { Formik, Form, Field } from "formik";
-//import loginVal from 'validation/loginValidation'
+import loginVal from 'validation/loginValidation'
 import {useSelector,useDispatch} from 'react-redux'
 import axios from 'axios'
 import {useNavigate,Link} from 'react-router-dom'
@@ -38,7 +38,7 @@ function Login() {
           />
         </div>
         <Formik
-        //validationSchema={loginVal}
+        validationSchema={loginVal}
           initialValues={{
             email: "",
             password: "",
@@ -50,9 +50,11 @@ function Login() {
               {
                 if(resp.status===200)
                 {
-                    localStorage.setItem("Utoken",JSON.stringify(resp.data))
-                    dispatch(setLog(true))
-                    navigate("/home")              
+                  localStorage.setItem("Atoken",JSON.stringify(resp.data))
+                  localStorage.setItem("route",JSON.stringify(true))
+                    dispatch(setLog(JSON.parse(localStorage.getItem("route"))))
+                    navigate("/home")   
+                               
                 }
               })
             

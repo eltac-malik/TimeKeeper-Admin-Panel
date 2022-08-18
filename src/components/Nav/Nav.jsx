@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './Nav.css'
+import {Link} from 'react-router-dom'
 
 function Nav() {
 
     const [resp, setResp] = useState("")
-    const [nav, setNav] = useState("nav")
+    const [nav, setNav] = useState("navs")
 
     return (
         <>
@@ -23,8 +24,8 @@ function Nav() {
                     </div>
                     
                 </div>
-                <p className='sidel'><span></span>Dashboard</p>
-                <p className='sidel'><span></span>Users</p>
+                <Link to='/home' className='sidel'><span></span>Dashboard</Link>
+                <Link to='/users' className='sidel'><span></span>Users</Link>
                 <p className='sidel'><span></span>Products</p>
                 <p className='sidel'><span></span>Categories</p>
                 <p className='sidel'><span></span>Brands</p>

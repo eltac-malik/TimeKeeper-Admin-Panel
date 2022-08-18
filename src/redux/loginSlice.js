@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const loginSlice = createSlice({
     name:"login",
     initialState:{
-        isLogged:false
+        isLogged:JSON.parse(localStorage.getItem("route"))
     },
     reducers:{
         setLog:(state,action)=>

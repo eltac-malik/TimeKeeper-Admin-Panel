@@ -1,0 +1,24 @@
+.users
+{
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table
+{
+    width: 80%;
+}
+
+.tr-title
+{
+    background-color: #161618;
+    color: white;
+}
+
+tr:nth-child(odd)
+{
+    background-color: rgb(233, 233, 233);
+}
