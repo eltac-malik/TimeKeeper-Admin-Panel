@@ -83,3 +83,36 @@ tr:nth-child(odd)
 {
     width: 60%;
 }
+
+.btns-mod
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.btns-mod .btn
+{
+    margin: 5px;
+}
+
+.add
+{
+    background-color: seagreen;
+    color: white;
+}
+.cls
+{
+    background-color: red !important;
+    color: white;
+}
+
+.cls:hover
+{
+    color: white;
+}
+.add:hover
+{
+    color: white;
+}

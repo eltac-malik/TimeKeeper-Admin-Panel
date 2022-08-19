@@ -62,10 +62,13 @@ function Users() {
                     surname:"",
                     email:"",
                     phoneNumber:"",
-                    password:""
+                    password:"",
+                    isAdmin:"false"
                   }}
                   onSubmit={(val)=>
                   {
+                    console.log(val);
+                    
                      let x = JSON.parse(localStorage.getItem("Atoken"));
                     axios.post("http://ejtacmalik-001-site1.btempurl.com/api/admin/Users/register",
                     {val},
@@ -103,21 +106,23 @@ function Users() {
                       <label htmlFor="">Password</label>
                       <Field name='password'/>
                     </div>
-                    <input type="submit"/>
-                  </Form>
-                </Formik>
-              </div>
-              <div class="modal-footer">
-                <button
+                    <div className="mod-part">
+                      <label htmlFor="">Admin</label>
+                      <Field type='radio' name='isAdmin' value='true'/>
+                    </div>
+                    <div className="btns-mod">
+                    
+                    <input className='btn add' type="submit"/>
+                    <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn cls"
                   data-dismiss="modal"
                 >
                   Close
                 </button>
-                <button type="button" class="btn btn-primary">
-                  Add
-                </button>
+                </div>
+                  </Form>
+                </Formik>
               </div>
             </div>
           </div>
