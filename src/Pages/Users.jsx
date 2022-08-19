@@ -57,12 +57,12 @@ function Users() {
                 <Formik
                 initialValues={
                   {
-                    username:"",
-                    name:"",
-                    surname:"",
-                    email:"",
-                    phoneNumber:"",
-                    password:"",
+                    Username:"",
+                    Name:"",
+                    Surname:"",
+                    Email:"",
+                    PhoneNumber:"",
+                    Password:"",
                     isAdmin:"false"
                   }}
                   onSubmit={(val)=>
@@ -70,12 +70,16 @@ function Users() {
                     console.log(val);
                     
                      let x = JSON.parse(localStorage.getItem("Atoken"));
-                    axios.post("http://ejtacmalik-001-site1.btempurl.com/api/admin/Users/register",
-                    {val},
+                    axios.post("http://ejtacmalik-001-site1.btempurl.com/api/admin/Users/register",                             
+                    {
+                      ...val,isAdmin:val.isAdmin==='true'?true:false
+                    },
                     {
                       headers:
                       {
                          Authorization: "Bearer " + x,
+                         "Content-Type":"application/json"
+
                       }
                     })
                     .then(resp=> console.log(resp.status))
@@ -84,27 +88,27 @@ function Users() {
                   <Form>
                     <div className="mod-part">
                       <label htmlFor="">Username</label>
-                      <Field name='username'/>
+                      <Field name='Username'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">Name</label>
-                      <Field name='name'/>
+                      <Field name='Name'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">Surname</label>
-                      <Field name='surname'/>
+                      <Field name='Surname'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">E-mail</label>
-                      <Field name='email'/>
+                      <Field name='Email'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">Phone</label>
-                      <Field name='phoneNumber'/>
+                      <Field name='PhoneNumber'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">Password</label>
-                      <Field name='password'/>
+                      <Field name='Password'/>
                     </div>
                     <div className="mod-part">
                       <label htmlFor="">Admin</label>
