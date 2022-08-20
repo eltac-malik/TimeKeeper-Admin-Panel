@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../assets/css/Users.css";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
+import userVal from 'validation/userValidation'
 
 function Users() {
   const [user, setUser] = useState([]);
@@ -65,6 +66,7 @@ function Users() {
                     Password:"",
                     isAdmin:"false"
                   }}
+                  validationSchema={userVal}
                   onSubmit={(val)=>
                   {
                     console.log(val);
@@ -85,47 +87,53 @@ function Users() {
                     .then(resp=> console.log(resp.status))
                   }}
                 >
-                  <Form>
-                    <div className="mod-part">
-                      <label htmlFor="">Username</label>
-                      <Field name='Username'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">Name</label>
-                      <Field name='Name'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">Surname</label>
-                      <Field name='Surname'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">E-mail</label>
-                      <Field name='Email'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">Phone</label>
-                      <Field name='PhoneNumber'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">Password</label>
-                      <Field name='Password'/>
-                    </div>
-                    <div className="mod-part">
-                      <label htmlFor="">Admin</label>
-                      <Field type='radio' name='isAdmin' value='true'/>
-                    </div>
-                    <div className="btns-mod">
+                {
+                  ({errors,touched})=>
+                  (
                     
-                    <input className='btn add' type="submit"/>
-                    <button
-                  type="button"
-                  className="btn cls"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                </div>
-                  </Form>
+                  <Form>
+                  <div className="mod-part">
+                    <label htmlFor="" className='add-lbl'>Username {errors.Username&&touched.Username? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='Username' placeholder='8 length 1 Upper 1 symbol'/>
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor=""  className='add-lbl'>Name  {errors.Name&&touched.Name? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='Name'/>  
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor=""  className='add-lbl'>Surname {errors.Surname&&touched.Surname? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='Surname'/>
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor="" className='add-lbl'>E-mail {errors.Email&&touched.Email? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='Email'/>
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor="" className='add-lbl'>Phone {errors.PhoneNumber&&touched.PhoneNumber? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='PhoneNumber'/>
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor="" className='add-lbl'>Password {errors.Password&&touched.Password? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field name='Password'/>
+                  </div>
+                  <div className="mod-part">
+                    <label htmlFor="" className='add-lbl'>Admin {errors.isAdmin&&touched.isAdmin? <div className='add-err'><i className="fa-solid fa-circle-exclamation"></i></div>:null}</label>
+                    <Field type='radio' name='isAdmin' value='true'/>
+                  </div>
+                  <div className="btns-mod">
+                  
+                  <input className='btn add' type="submit"/>
+                  <button
+                type="button"
+                className="btn cls"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              </div>
+                </Form>
+                  )
+                }
                 </Formik>
               </div>
             </div>
