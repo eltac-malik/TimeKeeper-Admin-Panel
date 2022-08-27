@@ -4,7 +4,7 @@ import ModalView from 'components/Modal/Modal';
 import axios from 'axios'
 import Remove from 'components/Modal/Remove'
 import {useDispatch} from 'react-redux'
-import {setText} from 'redux/textSlice'
+import {setText,setId} from 'redux/textSlice'
 import Edit from 'components/Modal/Edit';
 
 function Slider() {
@@ -58,8 +58,8 @@ function Slider() {
                                 <div className="func-btn">
                                 <p className='slid-edit' onClick={()=>
                                 {
-                                  setRemShow(true)
-
+                                  setEditShow(true)
+                                  dispatch(setId(e.id))
                                 }}>edit</p>
                                 <p onClick={()=>handleRemove(e)} className='slid-del'>delete</p>
                                 <Remove remshow={remshow} setRemShow={setRemShow} setSlid={setSlid}/>
