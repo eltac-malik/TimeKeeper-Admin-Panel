@@ -9,6 +9,7 @@ import {useDispatch} from 'react-redux'
 import {setLog} from './redux/loginSlice'
 import Sliders from './Pages/Slider'
 import Users from 'Pages/Users';
+import Brands from 'Pages/Brands/Brands';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/users' element={<Users/>}/>
           <Route path='/slider' element={<Sliders/>}/>
+          <Route path='/brands' element={<Brands/>}/>
           </Route>
         </Routes>
     

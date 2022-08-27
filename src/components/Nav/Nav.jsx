@@ -26,9 +26,9 @@ function Nav() {
                 </div>
                 <Link to='/home' className='sidel'><span></span>Dashboard</Link>
                 <Link to='/users' className='sidel'><span></span>Users</Link>
-                <p className='sidel'><span></span>Products</p>
+                <Link to='/products' className='sidel'><span></span>Products</Link>
                 <p className='sidel'><span></span>Categories</p>
-                <p className='sidel'><span></span>Brands</p>
+                <Link to='/brands' className='sidel'><span></span>Brands</Link>
                 <Link to='/slider' className='sidel'><span></span>Sliders</Link>
             </div>
 

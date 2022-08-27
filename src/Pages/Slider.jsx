@@ -52,7 +52,7 @@ function Slider() {
                     slid&&slid.map(e=>
                         {
                             return(
-                               <div className="slid-one">
+                               <div key={e.id} className="slid-one">
                                 <p>{e.id}</p>
                                 <p>{e.mainTitle}</p>
                                 <div className="func-btn">
