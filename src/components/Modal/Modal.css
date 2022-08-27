@@ -121,3 +121,44 @@
     align-items: center;
     justify-content: center;
 }
+
+.current-img
+{
+    width: 100px !important;
+    height: 100px !important;
+    background-color: red !important;
+    margin-bottom: 10px;
+}
+
+.current-img img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slid-all
+{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modded
+{
+    margin-top: 20px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

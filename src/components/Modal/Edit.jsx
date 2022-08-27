@@ -11,6 +11,7 @@ import {setEvenData} from 'redux/textSlice'
 function Edit({editshow, setEditShow,setSlid}) {
 
     const identifier = useSelector(state => state.text.slidId)
+    const [newimg,setImg] = useState(null)
     const dispatch = useDispatch()    
 
   useEffect(() => {
@@ -26,45 +27,27 @@ function Edit({editshow, setEditShow,setSlid}) {
   
 
   const evenSlid = useSelector(state => state.text.evenData)
-  console.log(evenSlid);
-  console.log(identifier);
-  
 
-  
-
-    const handleClose = () => setEditShow(false);
-    const handleShow = () => setEditShow(true);
 
     const handleEditModal = ()=>
     {
-        // let token = JSON.parse(localStorage.getItem("Atoken"));
-        // axios.get(`http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/`,
-        // {
-        //   headers: {
-        //     Authorization: "Bearer " + token,
-        //   }
-        // }).then(resp=> 
-        //   {
-        //     if (resp.status===204)
-        //     {
-        //       axios
-        //       .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/getall", {
-        //         headers: {
-        //           Authorization: "Bearer " + token,
-        //         },
-        //       })
-        //       .then((resp) => setSlid(resp.data))
-        //       .then(()=> setEditShow(false))
-        //     }
-        //   }
-        // )
+        setEditShow(false);
+        let x = JSON.parse(localStorage.getItem("Atoken"));
+        axios
+          .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/getall", {
+            headers: {
+              Authorization: "Bearer " + x,
+            },
+          })
+          .then((resp) => setSlid(resp.data));
+
 
     }
 
     return (
         <div>
          
-         <Modal show={editshow} >
+         <Modal className='modded' show={editshow} >
                     <div class="modal-content">
                         <Modal.Header>
                             <button onClick={()=> setEditShow(false)} type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -78,38 +61,36 @@ function Edit({editshow, setEditShow,setSlid}) {
                                     {
                                         maint: evenSlid&&evenSlid.mainTitle,
                                         sub: evenSlid&&evenSlid.subTitle,
-                                        image: "",
+                                        image: newimg&&newimg,
                                         desc: evenSlid&&evenSlid.description
                                     }
                                 }
                                 onSubmit={(x) => {
                                     const formdata = new FormData();
+                                    formdata.append("Id",evenSlid&&evenSlid.id)
                                     formdata.append("MainTitle", x.maint)
                                     formdata.append("SubTitle", x.sub)
                                     formdata.append("Description", x.desc)
+                                    formdata.append("File", newimg?newimg:evenSlid.image)
 
 
                                     let token = JSON.parse(localStorage.getItem("Atoken"));
 
-                                    let url = "http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders"
+                                    for (const i of formdata.entries()){
+                                        console.log(i);
+                                    }
+
+                                    let url = `http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/${evenSlid&&evenSlid.id}`
                                     fetch(url, {
-                                        method: 'post',
+                                        method: 'PUT',
                                         headers: {
                                             "Authorization": "Bearer " + token,
                                         },
                                         body: formdata,
                                     })
                                         .then(resp => {
-                                            if (resp.status === 201) {
-                                                setEditShow(false);
-                                                let x = JSON.parse(localStorage.getItem("Atoken"));
-                                                axios
-                                                  .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/getall", {
-                                                    headers: {
-                                                      Authorization: "Bearer " + x,
-                                                    },
-                                                  })
-                                                  .then((resp) => setSlid(resp.data));
+                                            if (resp.status === 204) {
+                                                handleEditModal()
                                             }
                                         }
                                         )
@@ -128,9 +109,20 @@ function Edit({editshow, setEditShow,setSlid}) {
                                     </div>
                                     <div className="slid-area">
                                         <label htmlFor="main">Select image</label>
+                                        <div className="slid-all">
+                                            {
+                                                newimg===null?
+                                                <div className="current-img">
+                                                <img src={`http://ejtacmalik-001-site1.btempurl.com/Sliders/${evenSlid.image}`} alt=""/>
+                                                </div>
+                                                :
+                                                <p>{newimg&&newimg.name}</p>
+                                            }
                                         <div className="select-file">
-                                            <i class="bi bi-link-45deg"></i>
-                                            <input  name='image' type="file" className='custom-file-input' accept="image/jpeg" id='main' />
+                                                <i class="bi bi-link-45deg"></i>
+                                                <input onChange={(e) => setImg(e.target.files[0])}   name='image' type="file" className='custom-file-input' accept="image/jpeg" id='main' />
+                                        </div>
+
                                         </div>
                                     </div>
                                     <div className="slid-area area-t">
