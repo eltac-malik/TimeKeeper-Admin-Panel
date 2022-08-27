@@ -29,7 +29,7 @@ function Nav() {
                 <p className='sidel'><span></span>Products</p>
                 <p className='sidel'><span></span>Categories</p>
                 <p className='sidel'><span></span>Brands</p>
-                <p className='sidel'><span></span>Sliders</p>
+                <Link to='/slider' className='sidel'><span></span>Sliders</Link>
             </div>
 
         </>

@@ -7,6 +7,7 @@ import Login from './Pages/Login'
 import ProtectedRoutes from './Routes/ProtectedRoutes'
 import {useDispatch} from 'react-redux'
 import {setLog} from './redux/loginSlice'
+import Sliders from './Pages/Slider'
 import Users from 'Pages/Users';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route element={<ProtectedRoutes/>}>
           <Route path='/home' element={<Home/>}/>
           <Route path='/users' element={<Users/>}/>
+          <Route path='/slider' element={<Sliders/>}/>
           </Route>
         </Routes>
     
