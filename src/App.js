@@ -10,6 +10,7 @@ import {setLog} from './redux/loginSlice'
 import Sliders from './Pages/Slider'
 import Users from 'Pages/Users';
 import Brands from 'Pages/Brands/Brands';
+import Category from  'Pages/Category/Categories'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/users' element={<Users/>}/>
           <Route path='/slider' element={<Sliders/>}/>
           <Route path='/brands' element={<Brands/>}/>
+          <Route path='/category' element={<Category/>}/>
           </Route>
         </Routes>
     

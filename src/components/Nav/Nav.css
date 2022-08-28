@@ -122,21 +122,8 @@
 
 @media(max-width:900px)
 {
-    .nav
+    .navs
     {
         width: 0px
-    }
-    .fa-bars,
-    .fa-xmark
-    {
-        display: block
-    }
-    .nav-img img
-    {
-        width: 30%;
-    }
-    .sidel
-    {
-        height: 70px;
     }
 }

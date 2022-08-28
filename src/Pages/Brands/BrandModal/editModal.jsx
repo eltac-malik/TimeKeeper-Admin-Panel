@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import './Modal.css'
+import 'components/Modal/Modal.css'
 import { Formik, Form, Field } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Modal'
 import axios from 'axios'
 import {setEvenData} from 'redux/textSlice'
 
-function Edit({editshow, setEditShow,setSlid}) {
+function Edit({modEdit, setModEdit,setBrands}) {
 
     const identifier = useSelector(state => state.text.slidId)
     const [newimg,setImg] = useState(null)
@@ -17,7 +17,7 @@ function Edit({editshow, setEditShow,setSlid}) {
   useEffect(() => {
     let x = JSON.parse(localStorage.getItem("Atoken"));
     axios
-      .get(`http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/${identifier}`, {
+      .get(`http://ejtacmalik-001-site1.btempurl.com/api/admin/Brands/${identifier}`, {
         headers: {
           Authorization: "Bearer " + x,
         },
@@ -27,30 +27,30 @@ function Edit({editshow, setEditShow,setSlid}) {
   
 
   const evenSlid = useSelector(state => state.text.evenData)
+  console.log(evenSlid.image);
+  
 
 
     const handleEditModal = ()=>
     {
-        setEditShow(false);
+        setModEdit(false);
         let x = JSON.parse(localStorage.getItem("Atoken"));
         axios
-          .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/getall", {
+          .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Brands/getall", {
             headers: {
               Authorization: "Bearer " + x,
             },
           })
-          .then((resp) => setSlid(resp.data));
-
-
+          .then((resp) => setBrands(resp.data));
     }
 
     return (
         <div>
          
-         <Modal className='modded' show={editshow} >
+         <Modal className='modded' show={modEdit} >
                     <div className="modal-content">
                         <Modal.Header>
-                            <button onClick={()=> setEditShow(false)} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button onClick={()=> setModEdit(false)} type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </Modal.Header>
@@ -59,27 +59,16 @@ function Edit({editshow, setEditShow,setSlid}) {
                              enableReinitialize={true}
                                 initialValues={
                                     {
-                                        maint: evenSlid&&evenSlid.mainTitle,
-                                        sub: evenSlid&&evenSlid.subTitle,
-                                        image: newimg&&newimg,
-                                        desc: evenSlid&&evenSlid.description
+                                        name: evenSlid&&evenSlid.name,
                                     }
                                 }
                                 onSubmit={(x) => {
                                     const formdata = new FormData();
                                     formdata.append("Id",evenSlid&&evenSlid.id)
-                                    formdata.append("MainTitle", x.maint)
-                                    formdata.append("SubTitle", x.sub)
-                                    formdata.append("Description", x.desc)
                                     formdata.append("File", newimg?newimg:evenSlid.image)
 
 
                                     let token = JSON.parse(localStorage.getItem("Atoken"));
-
-                                    for (const i of formdata.entries()){
-                                        console.log(i);
-                                    }
-
                                     let url = `http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/${evenSlid&&evenSlid.id}`
                                     fetch(url, {
                                         method: 'PUT',
@@ -100,12 +89,8 @@ function Edit({editshow, setEditShow,setSlid}) {
                                 <Form>
 
                                     <div className="slid-area">
-                                        <label htmlFor="main">Main Title</label>
-                                        <Field name='maint' type="text" id='main' />
-                                    </div>
-                                    <div className="slid-area">
-                                        <label htmlFor="main">Sub Title</label>
-                                        <Field name='sub' type="text" id='main' />
+                                        <label htmlFor="main">Brand Name</label>
+                                        <Field name='name' type="text" id='main' />
                                     </div>
                                     
                                     <div className="slid-area">
@@ -114,7 +99,7 @@ function Edit({editshow, setEditShow,setSlid}) {
                                             {
                                                 newimg===null?
                                                 <div className="current-img">
-                                                <img src={`http://ejtacmalik-001-site1.btempurl.com/Sliders/${evenSlid.image}`} alt=""/>
+                                                <img src={`http://ejtacmalik-001-site1.btempurl.com/Brands/${evenSlid&&evenSlid.image}`} alt=""/>
                                                 </div>
                                                 :
                                                 <p>{newimg&&newimg.name}</p>
@@ -125,15 +110,6 @@ function Edit({editshow, setEditShow,setSlid}) {
                                         </div>
 
                                         </div>
-                                    </div>
-
-
-
-
-
-                                    <div className="slid-area area-t">
-                                        <label htmlFor="main">Description</label>
-                                        <Field name='desc' className='area' as='textarea' />
                                     </div>
                                     <div className="slid-btn">
                                     <input className='sub-input' type="submit" /></div>

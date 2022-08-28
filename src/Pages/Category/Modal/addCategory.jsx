@@ -5,9 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 
-function AddModal({show,setShow,setBrands}) {
-
-    const [brandImg, setBrandImg] = useState(null)
+function AddModal({show,setShow,setCategory}) {
     const navigate = useNavigate()
 
     return (
@@ -24,36 +22,32 @@ function AddModal({show,setShow,setBrands}) {
                             <Formik
                                 initialValues={
                                     {
-                                        brandname: "",
+                                        categoryname: "",
                                     }
                                 }
                                 onSubmit={(x) => {
-                                    const formdata = new FormData();
-                                    formdata.append("Name", x.brandname)
-                                    formdata.append("File", brandImg)
+                                   
                                     let token = JSON.parse(localStorage.getItem("Atoken"));
-
-
-                                     let url = "http://ejtacmalik-001-site1.btempurl.com/api/admin/Brands"
-
+                                    let url = "http://ejtacmalik-001-site1.btempurl.com/api/admin/Categories"
+                                    let name = x.categoryname
                                     fetch(url, {
                                         method: 'post',
                                         headers: {
+                                            'Content-Type': "application/json; charset=utf-8",
                                             "Authorization": "Bearer " + token,
                                         },
-                                        body: formdata,
-                                    })
-                                        .then(resp => {
+                                        body: JSON.stringify({name: name})
+                                    }).then(resp => {
                                             if (resp.status === 201) {
                                                 setShow(false);
                                                 let x = JSON.parse(localStorage.getItem("Atoken"));
                                                 axios
-                                                  .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Brands/getall", {
+                                                  .get("http://ejtacmalik-001-site1.btempurl.com/api/admin/Categories/getall", {
                                                     headers: {
-                                                      Authorization: "Bearer " + x,
+                                                      Authorization: "Bearer " + x
                                                     },
                                                   })
-                                                  .then((resp) => setBrands(resp.data));
+                                                  .then((resp) => setCategory(resp.data));
                                             }
                                         }
                                         )
@@ -65,21 +59,8 @@ function AddModal({show,setShow,setBrands}) {
                                 <Form>
 
                                     <div className="slid-area">
-                                        <label htmlFor="main">Brand Name</label>
-                                        <Field name='brandname' type="text" id='main' />
-                                    </div>
-                                    <div className="slid-area">
-                                        <label htmlFor="main">Select image</label>
-                                        
-                                        <div className="slid-all">
-                                            {
-                                                brandImg!==null&&<p>{brandImg&&brandImg.image}</p>
-                                            }
-                                            </div>
-                                        <div className="select-file">
-                                            <i className="bi bi-link-45deg"></i>
-                                            <input onChange={(e) => setBrandImg(e.target.files[0])} name='image' type="file" className='custom-file-input' accept="image/jpeg" id='main' />
-                                        </div>
+                                        <label htmlFor="main">Category Name</label>
+                                        <Field name='categoryname' type="text" id='main' />
                                     </div>
                                     <div className="slid-btn">
                                     <input className='sub-input' type="submit" /></div>

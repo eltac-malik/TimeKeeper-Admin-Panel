@@ -13,13 +13,13 @@ function ModalView({show,setShow,setSlid}) {
     return (
         <div className='mod-all'>
             <Modal show={show} >
-                    <div class="modal-content">
+                    <div className="modal-content">
                         <Modal.Header>
-                            <button onClick={()=> setShow(false)} type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onClick={()=> setShow(false)} type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </Modal.Header>
-                        <Modal.Body class="modal-body">
+                        <Modal.Body className="modal-body">
 
                             <Formik
                                 initialValues={
@@ -78,7 +78,7 @@ function ModalView({show,setShow,setSlid}) {
                                     <div className="slid-area">
                                         <label htmlFor="main">Select image</label>
                                         <div className="select-file">
-                                            <i class="bi bi-link-45deg"></i>
+                                            <i className="bi bi-link-45deg"></i>
                                             <input onChange={(e) => setImager(e.target.files[0])} name='image' type="file" className='custom-file-input' accept="image/jpeg" id='main' />
                                         </div>
                                     </div>
