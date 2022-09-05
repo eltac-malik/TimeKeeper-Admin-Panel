@@ -2,13 +2,14 @@ import {useEffect} from 'react';
 import './App.css';
 import Nav from './components/Nav/Nav'
 import {Routes,Route,useLocation} from 'react-router-dom'
-import Home from './Pages/Home'
+import Home from './Pages/Home/Home'
 import Login from './Pages/Login'
 import ProtectedRoutes from './Routes/ProtectedRoutes'
 import {useDispatch} from 'react-redux'
 import {setLog} from './redux/loginSlice'
 import Sliders from './Pages/Slider'
-import Users from 'Pages/Users';
+import Users from 'Pages/Users/Users';
+import Products from 'Pages/Products/Products'
 import Brands from 'Pages/Brands/Brands';
 import Category from  'Pages/Category/Categories'
 
@@ -44,6 +45,7 @@ function App() {
           <Route path='/users' element={<Users/>}/>
           <Route path='/slider' element={<Sliders/>}/>
           <Route path='/brands' element={<Brands/>}/>
+          <Route path='/products' element={<Products/>}/>
           <Route path='/category' element={<Category/>}/>
           </Route>
         </Routes>

@@ -72,13 +72,8 @@ function Edit({editshow, setEditShow,setSlid}) {
                                     formdata.append("SubTitle", x.sub)
                                     formdata.append("Description", x.desc)
                                     formdata.append("File", newimg?newimg:evenSlid.image)
-
-
+                                    
                                     let token = JSON.parse(localStorage.getItem("Atoken"));
-
-                                    for (const i of formdata.entries()){
-                                        console.log(i);
-                                    }
 
                                     let url = `http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/${evenSlid&&evenSlid.id}`
                                     fetch(url, {
@@ -117,7 +112,7 @@ function Edit({editshow, setEditShow,setSlid}) {
                                                 <img src={`http://ejtacmalik-001-site1.btempurl.com/Sliders/${evenSlid.image}`} alt=""/>
                                                 </div>
                                                 :
-                                                <p>{newimg&&newimg.name}</p>
+                                                <p className='img-path'>{newimg&&newimg.name}</p>
                                             }
                                         <div className="select-file">
                                                 <i className="bi bi-link-45deg"></i>

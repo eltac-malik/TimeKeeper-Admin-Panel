@@ -15,7 +15,7 @@ function Home() {
     
 
     return (
-        <div>
+        <div >
             salam
         </div>
     )

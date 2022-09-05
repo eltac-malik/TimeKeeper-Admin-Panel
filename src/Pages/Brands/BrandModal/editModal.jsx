@@ -27,7 +27,6 @@ function Edit({modEdit, setModEdit,setBrands}) {
   
 
   const evenSlid = useSelector(state => state.text.evenData)
-  console.log(evenSlid.image);
   
 
 
@@ -63,13 +62,14 @@ function Edit({modEdit, setModEdit,setBrands}) {
                                     }
                                 }
                                 onSubmit={(x) => {
+                                    let numId = Number(evenSlid&&evenSlid.id)
                                     const formdata = new FormData();
-                                    formdata.append("Id",evenSlid&&evenSlid.id)
+                                    formdata.append("Id",numId)
+                                    formdata.append("Name",x.name)
                                     formdata.append("File", newimg?newimg:evenSlid.image)
 
-
                                     let token = JSON.parse(localStorage.getItem("Atoken"));
-                                    let url = `http://ejtacmalik-001-site1.btempurl.com/api/admin/Sliders/${evenSlid&&evenSlid.id}`
+                                    let url = `http://ejtacmalik-001-site1.btempurl.com/api/admin/Brands/${evenSlid&&evenSlid.id}`
                                     fetch(url, {
                                         method: 'PUT',
                                         headers: {
@@ -78,13 +78,14 @@ function Edit({modEdit, setModEdit,setBrands}) {
                                         body: formdata,
                                     })
                                         .then(resp => {
+                                            console.log(resp.body)
                                             if (resp.status === 204) {
                                                 handleEditModal()
                                             }
                                         }
                                         )
-
-                                }}
+                                }
+                                }
                             >
                                 <Form>
 
@@ -102,7 +103,7 @@ function Edit({modEdit, setModEdit,setBrands}) {
                                                 <img src={`http://ejtacmalik-001-site1.btempurl.com/Brands/${evenSlid&&evenSlid.image}`} alt=""/>
                                                 </div>
                                                 :
-                                                <p>{newimg&&newimg.name}</p>
+                                                <p className='img-path'>{newimg&&newimg.name}</p>
                                             }
                                         <div className="select-file">
                                                 <i className="bi bi-link-45deg"></i>

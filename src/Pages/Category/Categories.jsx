@@ -41,7 +41,7 @@ function Category() {
     <div className='slider'>
       <div className="add-slid">
         <h1>Category</h1>
-        <p className='new-p' onClick={() => setShow(true)} data-toggle="modal" data-target="#exampleModal">Create Slider</p>
+        <p className='new-p' onClick={() => setShow(true)} data-toggle="modal" data-target="#exampleModal">Create Category</p>
       </div>
       <ModalView show={show} setShow={setShow} setCategory={setCategory} />
       <div className="slider-list">
